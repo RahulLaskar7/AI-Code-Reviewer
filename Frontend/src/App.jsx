@@ -6,10 +6,6 @@ import { ClipLoader } from "react-spinners";
 import Editor from "@monaco-editor/react";
 
 function App() {
-  // -----------------------------
-  // State
-  // -----------------------------
-
   const [language, setLanguage] = useState("javascript");
 
   const [code, setCode] = useState(`function sum() {
@@ -21,10 +17,6 @@ function App() {
   const [error, setError] = useState("");
 
   const editorRef = useRef(null);
-
-  // -----------------------------
-  // Supported Languages
-  // -----------------------------
 
   const languages = [
     {
@@ -53,25 +45,16 @@ function App() {
     },
   ];
 
-  // -----------------------------
-  // Editor Mount
-  // -----------------------------
-
   function handleEditorDidMount(editor) {
     editorRef.current = editor;
     editor.focus();
   }
-
-  // -----------------------------
-  // Language Change
-  // -----------------------------
 
   function handleLanguageChange(event) {
     const newLanguage = event.target.value;
 
     setLanguage(newLanguage);
 
-    // Optional example code when language changes
     const exampleCode = {
       javascript: `function sum(a, b) {
   return a + b;
@@ -121,17 +104,12 @@ int main() {
     setCode(exampleCode[newLanguage]);
   }
 
-  // -----------------------------
-  // AI Code Review
-  // -----------------------------
-
   async function reviewCode() {
     try {
       setLoading(true);
       setError("");
       setReview("");
 
-      // Make sure editor exists
       if (!editorRef.current) {
         setError("Editor is not ready. Please try again.");
         return;
@@ -139,17 +117,18 @@ int main() {
 
       const currentCode = editorRef.current.getValue();
 
-      // Prevent empty code review
       if (!currentCode.trim()) {
         setError("Please enter some code before analyzing.");
         return;
       }
 
+      const API_URL = import.meta.env.VITE_API_URL;
+
       const response = await axios.post(
-        "http://localhost:3000/ai/get-review",
+        `${API_URL}/ai/get-review`,
         {
-          code: currentCode,
           language: language,
+          code: currentCode,
         }
       );
 
@@ -175,14 +154,8 @@ int main() {
     }
   }
 
-  // -----------------------------
-  // UI
-  // -----------------------------
-
   return (
     <div className="app-container">
-
-      {/* Header */}
       <header className="app-header">
         <h1>AI Code Review</h1>
 
@@ -201,13 +174,8 @@ int main() {
         </div>
       </header>
 
-      {/* Main Content */}
       <div className="main-content">
-
-        {/* Code Editor Panel */}
         <div className="editor-panel">
-
-          {/* Editor Header */}
           <div className="editor-header">
             <h2>Code Editor</h2>
 
@@ -217,17 +185,13 @@ int main() {
               onChange={handleLanguageChange}
             >
               {languages.map((lang) => (
-                <option
-                  key={lang.value}
-                  value={lang.value}
-                >
+                <option key={lang.value} value={lang.value}>
                   {lang.label}
                 </option>
               ))}
             </select>
           </div>
 
-          {/* Monaco Editor */}
           <div className="code-editor-container">
             <Editor
               height="100%"
@@ -240,33 +204,21 @@ int main() {
                 minimap: {
                   enabled: false,
                 },
-
                 fontSize: 14,
-
                 lineNumbers: "on",
-
                 roundedSelection: false,
-
                 scrollBeyondLastLine: false,
-
                 automaticLayout: true,
-
                 cursorStyle: "line",
-
                 cursorBlinking: "smooth",
-
                 wordWrap: "on",
-
                 tabSize: 2,
               }}
             />
           </div>
         </div>
 
-        {/* Review Panel */}
         <div className="review-panel">
-
-          {/* Review Header */}
           <div className="review-header">
             <h2>Code Analysis</h2>
 
@@ -279,9 +231,7 @@ int main() {
             </div>
           </div>
 
-          {/* Review Content */}
           <div className="review-content">
-
             {review ? (
               <Markdown
                 components={{
@@ -312,10 +262,8 @@ int main() {
                 </p>
               </div>
             )}
-
           </div>
         </div>
-
       </div>
     </div>
   );
