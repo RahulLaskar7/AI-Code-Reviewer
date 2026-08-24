@@ -1,0 +1,171 @@
+/* App.css */
+.app-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+  }
+  
+  .app-header {
+    padding: 1rem 2rem;
+    background-color: #252526;
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .main-content {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    overflow: hidden;
+  }
+  
+  .editor-panel, .review-panel {
+    background-color: #252526;
+    border-radius: 8px;
+    border: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  .editor-header, .review-header {
+    padding: 1rem;
+    background-color: #2d2d2d;
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .code-editor-container {
+    flex: 1;
+    overflow: auto;
+    position: relative;
+  }
+  
+  .review-content {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    line-height: 1.6;
+  }
+  
+  .review-button {
+    background-color: #007acc;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .review-button:hover {
+    background-color: #0062a3;
+  }
+  
+  .review-button:disabled {
+    background-color: #004d7a;
+    cursor: not-allowed;
+  }
+  
+  .language-tag {
+    background-color: #3a3d41;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+  
+  .empty-state {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c6c6c;
+  }
+  
+  .error-message {
+    color: #ff5555;
+    font-size: 0.9em;
+  }
+  
+  .code-textarea {
+    caret-color: #569cd6 !important;
+  }
+  
+  .code-preview {
+    margin: 0 !important;
+    background: none !important;
+    padding: 0 !important;
+  }
+  
+  pre {
+    background-color: #2d2d2d !important;
+    padding: 1rem !important;
+    border-radius: 4px;
+    margin: 1rem 0 !important;
+  }
+  
+  code {
+    font-family: 'Fira Code', monospace !important;
+  }
+ 
+.code-editor-container {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* Monaco Editor overrides */
+  .monaco-editor .cursor {
+    background-color: #569cd6 !important;
+    width: 2px !important;
+  }
+  
+  .monaco-editor .margin {
+    background-color: #1e1e1e !important;
+  }
+  /* Language Dropdown */
+
+.language-selector {
+  background: #3a3a3a;
+  color: white;
+  border: 1px solid #555;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  min-width: 130px;
+}
+
+.language-selector:hover {
+  background: #444;
+}
+
+.language-selector:focus {
+  outline: none;
+  border-color: #777;
+}
+
+.language-selector option {
+  background: #2d2d2d;
+  color: white;
+}
+
+/* Editor Header */
+
+.editor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
